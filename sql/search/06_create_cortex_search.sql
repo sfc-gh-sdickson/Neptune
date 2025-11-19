@@ -13,7 +13,7 @@ USE WAREHOUSE NEPTUNE_WH;
 -- 1. Technician Notes Search Service
 -- ============================================================================
 CREATE OR REPLACE CORTEX SEARCH SERVICE TECHNICIAN_NOTES_SEARCH
-    ON TECHNICIAN_NOTES(note_text)
+    ON note_text
     ATTRIBUTES work_order_id, technician_id, utility_id, interaction_type
     WAREHOUSE = NEPTUNE_WH
     TARGET_LAG = '5 minutes'
@@ -25,7 +25,7 @@ CREATE OR REPLACE CORTEX SEARCH SERVICE TECHNICIAN_NOTES_SEARCH
 -- 2. Installation Guides Search Service
 -- ============================================================================
 CREATE OR REPLACE CORTEX SEARCH SERVICE INSTALLATION_GUIDES_SEARCH
-    ON INSTALLATION_GUIDES(document_text)
+    ON document_text
     ATTRIBUTES meter_model_id, document_category, title
     WAREHOUSE = NEPTUNE_WH
     TARGET_LAG = '5 minutes'
@@ -37,7 +37,7 @@ CREATE OR REPLACE CORTEX SEARCH SERVICE INSTALLATION_GUIDES_SEARCH
 -- 3. Leak Investigation Reports Search Service
 -- ============================================================================
 CREATE OR REPLACE CORTEX SEARCH SERVICE LEAK_INVESTIGATION_REPORTS_SEARCH
-    ON LEAK_INVESTIGATION_REPORTS(report_text)
+    ON report_text
     ATTRIBUTES utility_id, meter_serial_number, investigation_status
     WAREHOUSE = NEPTUNE_WH
     TARGET_LAG = '5 minutes'
