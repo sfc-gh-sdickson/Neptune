@@ -99,8 +99,12 @@ SELECT
     c.utility_id,
     c.customer_id,
     DATEADD('day', -1 * UNIFORM(0, 3650, RANDOM()), CURRENT_DATE()) AS installation_date,
-    'DEPLOYED' as meter_status,
-    DATEADD('day', -1 * UNIFORM(0, 3, RANDOM()), CURRENT_DATE()) AS last_sync_date,
+    CASE 
+        WHEN UNIFORM(0, 100, RANDOM()) < 90 THEN 'DEPLOYED'
+        WHEN UNIFORM(0, 100, RANDOM()) < 8 THEN 'MAINTENANCE'
+        ELSE 'IN_STOCK'
+    END as meter_status,
+    DATEADD('day', -1 * UNIFORM(0, 180, RANDOM()), CURRENT_DATE()) AS last_sync_date,
     'v' || UNIFORM(1, 3, RANDOM()) || '.' || UNIFORM(0, 9, RANDOM()) AS firmware_version,
     DATEADD('day', -1 * UNIFORM(0, 3650, RANDOM()), CURRENT_TIMESTAMP()) AS created_at,
     CURRENT_TIMESTAMP() AS updated_at
