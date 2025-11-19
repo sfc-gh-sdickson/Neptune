@@ -117,7 +117,7 @@ SELECT
     mi.meter_serial_number,
     mi.utility_id,
     mi.customer_id,
-    DATEADD('hour', -t.SEQ4(), CURRENT_TIMESTAMP()) AS reading_timestamp,
+    DATEADD('hour', -SEQ4(), CURRENT_TIMESTAMP()) AS reading_timestamp,
     ABS(NORMAL(150, 40, RANDOM())) AS consumption_gallons,
     'HOURLY' as reading_type,
     (UNIFORM(0, 100, RANDOM()) < 2) AS anomaly_detected,
