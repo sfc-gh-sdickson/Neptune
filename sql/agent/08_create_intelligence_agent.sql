@@ -20,7 +20,7 @@ GRANT USAGE ON SCHEMA NEPTUNE_INTELLIGENCE.ANALYTICS TO ROLE SYSADMIN;
 GRANT USAGE ON SCHEMA NEPTUNE_INTELLIGENCE.RAW TO ROLE SYSADMIN;
 GRANT USAGE ON WAREHOUSE NEPTUNE_WH TO ROLE SYSADMIN;
 GRANT REFERENCES, SELECT ON SEMANTIC VIEW NEPTUNE_INTELLIGENCE.ANALYTICS.SV_METER_OPERATIONS_INTELLIGENCE TO ROLE SYSADMIN;
-GRANT REFERENCES, SELECT ON SEMANTIC VIEW NEPTUNE_INTELLIGENCE.ANALYTICS.SV_UTILITY_SERVICE_INTELLigence TO ROLE SYSADMIN;
+GRANT REFERENCES, SELECT ON SEMANTIC VIEW NEPTUNE_INTELLIGENCE.ANALYTICS.SV_UTILITY_SERVICE_INTELLIGENCE TO ROLE SYSADMIN;
 GRANT USAGE ON CORTEX SEARCH SERVICE NEPTUNE_INTELLIGENCE.RAW.TECHNICIAN_NOTES_SEARCH TO ROLE SYSADMIN;
 GRANT USAGE ON CORTEX SEARCH SERVICE NEPTUNE_INTELLIGENCE.RAW.INSTALLATION_GUIDES_SEARCH TO ROLE SYSADMIN;
 GRANT USAGE ON CORTEX SEARCH SERVICE NEPTUNE_INTELLIGENCE.RAW.LEAK_INVESTIGATION_REPORTS_SEARCH TO ROLE SYSADMIN;
@@ -46,18 +46,36 @@ instructions:
   orchestration: 'For metrics and KPIs use Cortex Analyst tools. For technician notes, installation guides, and leak reports use Cortex Search tools. For forecasting use ML function tools.'
   system: 'You help analyze water utility data including meter deployments, water consumption, service work orders, and customer satisfaction using structured and unstructured data sources.'
   sample_questions:
+    - question: "What is the total water consumption in gallons for 'MUNICIPAL' utilities in 'CA' over the last 6 months?"
+      answer: "I will use the MeterOperationsAnalyst to find this information."
     - question: "Which 5 meter models have the highest rate of reported anomalies?"
       answer: "I will use the MeterOperationsAnalyst to find anomaly rates per meter model."
-    - question: "Search technician notes for common solutions to issues with the 'R900' meter family."
-      answer: "I will use the TechnicianNotesSearch tool to find relevant notes about the R900 family."
-    - question: "Forecast the total water consumption for the next 6 months."
-      answer: "I will use the PredictConsumption ML model to predict future water usage."
     - question: "What is the average work order resolution time in hours for 'HIGH' priority tickets?"
-      answer: "I will use the UtilityServiceAnalyst to calculate resolution times for high priority work orders."
+      answer: "I will use the UtilityServiceAnalyst to calculate resolution times."
+    - question: "List the top 10 customers by total water consumption."
+      answer: "I will use the MeterOperationsAnalyst to rank customers by consumption."
+    - question: "How many meters are currently in 'MAINTENANCE' status, and what is their average age in days?"
+      answer: "I will use the MeterOperationsAnalyst to count meters in maintenance."
+    - question: "Search technician notes for common solutions to issues with the 'R900' meter family."
+      answer: "I will use the TechnicianNotesSearch tool to find notes about the R900 family."
+    - question: "What do the installation guides say about the required tools for a 'MACH 10' meter installation?"
+      answer: "I will use the InstallationGuidesSearch tool to look up this information."
     - question: "Find leak investigation reports where the root cause was identified as 'pipe corrosion'."
       answer: "I will use the LeakInvestigationSearch tool to find reports about pipe corrosion."
+    - question: "Search technician notes related to 'high bill complaints.' What are the common findings reported by technicians?"
+      answer: "I will use the TechnicianNotesSearch tool to find common findings for high bill complaints."
+    - question: "According to the installation guides, what are the safety procedures for replacing a meter battery?"
+      answer: "I will use the InstallationGuidesSearch tool to find safety procedures."
+    - question: "Forecast the total water consumption for the next 6 months."
+      answer: "I will use the PredictConsumption ML model to predict future water usage."
+    - question: "Which 'MUNICIPAL' utilities are predicted to churn?"
+      answer: "I will use the PredictChurn ML model to identify at-risk utilities."
     - question: "What is the predicted deployment success rate for the 'E-CODER' meter family?"
-      answer: "I will use the PredictDeploymentSuccess ML model to calculate the success rate for E-Coder meters."
+      answer: "I will use the PredictDeploymentSuccess ML model to calculate the success rate."
+    - question: "Project the water consumption for 3 months from now."
+      answer: "I will use the PredictConsumption ML model to forecast for 3 months."
+    - question: "What is the churn risk for 'PRIVATE' utilities?"
+      answer: "I will use the PredictChurn ML model to assess the risk for private utilities."
 tools:
   - tool_spec:
       type: 'cortex_analyst_text_to_sql'
