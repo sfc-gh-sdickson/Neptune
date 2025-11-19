@@ -1,0 +1,12 @@
+name: neptune_ml_models
+channels:
+  - snowflake
+dependencies:
+  - python=3.10
+  - snowflake-snowpark-python
+  - snowflake-ml-python
+  - scikit-learn
+  - xgboost
+  - matplotlib
+  - pandas
+  - numpy
