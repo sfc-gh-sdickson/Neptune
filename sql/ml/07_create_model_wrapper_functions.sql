@@ -49,9 +49,14 @@ def predict_consumption(session, months_ahead):
     predictions = model.run(input_df, function_name="predict")
     result = predictions.select("PREDICTED_CONSUMPTION").to_pandas()
     
+    predicted_volume = int(result['PREDICTED_CONSUMPTION'].iloc[0])
+    
+    # Add a floor to prevent negative predictions.
+    predicted_volume = max(0, predicted_volume)
+    
     return json.dumps({
         "months_ahead": months_ahead,
-        "predicted_consumption_gallons": int(result['PREDICTED_CONSUMPTION'].iloc[0])
+        "predicted_consumption_gallons": predicted_volume
     })
 $$;
 
