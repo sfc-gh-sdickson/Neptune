@@ -172,4 +172,3 @@ $$;
 -- Display confirmation
 -- ============================================================================
 SELECT 'ML model wrapper functions created successfully' AS status;
-$$;
