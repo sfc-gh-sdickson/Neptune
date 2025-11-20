@@ -1,4 +1,4 @@
-<img src="Snowflake_Logo.svg" width="300">
+<img src="Snowflake_Logo.svg" width="200">
 
 # Neptune Intelligence Agent Solution
 
